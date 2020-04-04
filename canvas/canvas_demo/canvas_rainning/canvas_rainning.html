@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas雨滴效果</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        canvas {
+            display: block;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        let canvas = document.querySelector("canvas")
+        let canCon = canvas.getContext("2d")
+        let w, h
+        let rainArry = []  // 用来存储所有新生成的雨滴
+
+        ~~function setSize() {
+            window.onresize = arguments.callee
+            w = window.innerWidth
+            h = window.innerHeight
+            canvas.width = w
+            canvas.height = h
+        }()
+
+        function random(min, max) {
+            return Math.random()*(max-min)+min
+        }
+
+        class Rain {
+            constructor() {
+                
+            }
+
+            init() {
+                this.y = 0  // 雨滴的初始化y轴坐标
+                this.x = random(0, w)  // 雨滴的初始化x轴坐标
+                this.v = random(2.5,3.5)  // 雨滴的下落速度
+                this.h = random(0.75*h, 0.88*h)  // 雨滴绽放的位置
+                this.r = 2  // 雨滴绽放的初始半径
+                this.a = 1  // 雨滴绽放时的初始透明度
+                this.va = random(0.90, 0.95)  // 雨滴变透明的速度
+            }
+
+            draw() {
+                if(this.y < this.h) {
+                    canCon.fillStyle = "#3ff"
+                    canCon.fillRect(this.x, this.y, 2, 10)
+                }else {
+                    canCon.strokeStyle = `rgb(51,255,255,${this.a})`
+                    canCon.beginPath()
+                    canCon.arc(this.x, this.y, this.r, 0, Math.PI*2)
+                    canCon.stroke()
+                }
+            }
+
+            move() {
+                if(this.y < this.h) {
+                    this.y += this.v
+                }else {
+                    if(this.a > 0.02) {
+                        this.r++
+                        this.a *= this.va
+                    }else {
+                        this.init()
+                    }
+                }
+                this.draw()
+            }
+        }
+
+        function createRain(num) {
+            for(let i=0; i<num; i++) {
+                setTimeout(function() {
+                    let rain = new Rain()
+                    rain.init()
+                    rain.draw()
+                    rainArry.push(rain)
+                }, 400*i)
+            }
+        }
+
+        createRain(15)
+
+        setInterval(() => {
+            canCon.fillStyle = "rgba(0,0,0,0.18)"
+            canCon.fillRect(0,0,w,h)
+            for(let item of rainArry) {
+                item.move()
+            }
+        }, 1000/60)
+    </script>
+</body>
+</html>

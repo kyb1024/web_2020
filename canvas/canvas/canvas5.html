@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas5</title>
+    <style>
+        canvas {
+            /* display: block; */
+            margin: 50px auto;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <canvas width='300' height='300' class='canvas1'></canvas>
+    <canvas width='300' height='300' class='canvas2'></canvas>
+    <button>下载图片</button>
+    <script>
+        let canvas1 = document.querySelector('.canvas1')
+        let canCon1 = canvas1.getContext('2d')
+        let canvas2 = document.querySelector('.canvas2')
+        let canCon2 = canvas2.getContext('2d')
+        let myImgData = canCon2.createImageData(300,300)
+        let btnDown = document.querySelector('button')
+        // console.log(myImgData)
+        let imgData
+        let img = new Image()
+        img.src = '/images/img.jpg'
+        img.onload = function() {
+            canCon1.drawImage(img,0,0,300,300)
+            imgData = canCon1.getImageData(0,0,300,300)
+            // console.log(imgData)
+            // canCon2.putImageData(imgData,0,0)
+            // canvas像素管理之缩放和反锯齿
+            // canCon2.imageSmoothingEnabled=false  // 默认为false
+            // canCon2.drawImage(canvas1,46,90,50,50,0,0,150,150)
+        }
+        // 放大镜
+        canvas1.addEventListener('mousemove', function(ev) {
+            canCon2.drawImage(canvas1, ev.offsetX-25, ev.offsetY-25, 50,50,0,0,200,200)
+        })
+
+        // 保存图片
+        // canvas.toDataURL('image/png',quality)  质量为0~1 
+        btnDown.onclick = function() {
+            let base64 = canvas1.toDataURL('image/png', 1)
+            let downA = document.createElement('a')
+            downA.href = base64
+            downA.download='上尾美羽.png'
+            downA.click()
+        }
+    </script>
+</body>
+</html>

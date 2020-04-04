@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+	    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+        <style>
+            canvas {
+                display: block;
+                margin: 100px auto 0;
+                background-color: green;
+            }
+        </style>
+	</head>
+	<body>
+        <canvas width="300" height="300">不支持canvas</canvas>
+        <script>
+            let canvas = document.querySelector("canvas")  // 获取canvas元素
+            let canvasContent = canvas.getContext("2d")  // 获取canvas元素的渲染上下文
+            canvasContent.fillStyle="red"
+            // canvasContent.arc(150,150,50,0,Math.PI*2) 
+            // canvasContent.fill()
+
+            // canvasContent.fillRect(125,125,50,50)  // 实心矩形
+
+            // canvasContent.strokeStyle="yellow"  // 边框颜色, 默认为黑色
+            // canvasContent.strokeRect(125,125,50,50)  // 空心矩形
+
+            // canvasContent.fillRect(100,100,100,100)
+            // canvasContent.clearRect(125,125,50,50)
+
+            // canvasContent.beginPath()  // 新建一条路径
+            // canvasContent.closePath()  // 
+            // canvasContent.stroke()  // 通过线条来绘制图形轮廓
+            // canvasContent.fill()  // 通过填充路径的内容区域生成实心的图形
+            // canvasContent.moveTo(x,y)  // 将笔触移动到指定的坐标x以及y上
+            // canvasContent.lineTo(x,y)  // 绘制一条从当前位置到指定x以及y位置的直线
+
+            // canvasContent.beginPath()
+            // canvasContent.moveTo(150,130)
+            // canvasContent.lineTo(170,160)
+            // canvasContent.lineTo(130,160)
+            // canvasContent.closePath()
+            // // canvasContent.stroke()
+            // canvasContent.fill()
+
+            // canvasContent.beginPath()
+            // canvasContent.moveTo(150,150)
+            // canvasContent.arc(150,150,50,0,Math.PI/2,true)
+            // canvasContent.stroke()
+
+            canvasContent.beginPath()
+            canvasContent.moveTo(150,20)
+            canvasContent.arcTo(150,100,50,20,20)
+            canvasContent.stroke()
+
+
+        </script>
+	</body>
+</html>

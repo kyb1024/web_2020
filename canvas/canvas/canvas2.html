@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas2</title>
+    <style>
+        canvas {
+            display: block;
+            margin: 50px auto 0;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <canvas width='400' height='500'>您的浏览器不支持,请换一个谷歌浏览器查看</canvas>
+    <script>
+        let canvas = document.querySelector('canvas')
+        let canCon = canvas.getContext('2d')
+        // canCon.globalAlpha = .6  // 图形的透明度
+        function createColorBoard(row, col) {
+            for(var i=0; i<row; i++) {
+                for(var j=0; j<col; j++) {
+                    canCon.fillStyle = 'rgb(' + Math.floor(255 - (255 / row) *i)+','+ Math.floor(255 - (255 / col) * j)+','+ 0 + ')'
+                    canCon.fillRect(j*25, i * 25, 25, 25)
+                }
+            }
+        }
+        // createColorBoard(10, 10)
+
+        function createColorBoardCir(row, col) {  // 横向行数, 纵向列数
+            for(var i=0; i<row; i++) {
+                for(var j=0; j<col; j++) {
+                    canCon.beginPath()
+                    canCon.strokeStyle='rgb(' + Math.floor(255 - (255/row) * i) + ',' +Math.floor(255 - (255/col) *j) + ',0)'
+                    // canCon.beginPath()
+                    canCon.arc(12.5 + j*25, 12.5 + 25*i, 10, 0, Math.PI*2, true)
+                    canCon.stroke()
+                }
+            }
+        }
+        // createColorBoardCir(10,10)
+
+        function createLine(num) {
+            for(var i=0; i<num; i++) {
+                canCon.lineWidth = 1+i
+                canCon.lineCap='round'  // butt(默认) square  线段端点显示的样子
+                canCon.beginPath()
+                canCon.moveTo(5+i*14, 5)
+                canCon.lineTo(5+i*14, 140)
+                canCon.stroke()
+            }
+        }
+        // createLine(10)
+        
+        canCon.lineWidth=10
+        canCon.lineJoin='round'  // bevel miter(默认)
+        canCon.moveTo(100,100)
+        canCon.lineTo(200,300)
+        canCon.lineTo(300,100)
+        // canCon.stroke()
+
+        // 虚线
+        var offset = 0
+        function draw() {
+            canCon.lineWidth=2
+            canCon.clearRect(0,0,500,500)
+            canCon.setLineDash([4,2])  // 线段与间隙的交替 (4个像素的线段,2个像素的间隙)
+            canCon.lineDashOffset=-offset  // 设置起始偏移量
+            canCon.strokeRect(10,10,100,100)
+        }
+        canCon
+        function march() {
+            offset++
+            if(offset > 12) {  
+                offset = 0
+            }
+            draw()
+            setTimeout(march,60)
+        }
+        // march()
+
+        // 渐变
+        var lingrad = canCon.createLinearGradient(0,0,0,150)  // 渐变色的尺寸数据
+        lingrad.addColorStop(0,'#00ABEB')  // 从上往下开始数,最开始是蓝色
+        lingrad.addColorStop(.5,'#fff')  // 中间是白色
+        lingrad.addColorStop(.5,'#26C000')  // 立即切换为绿色
+        lingrad.addColorStop(1,'#fff')  // 最后是白色
+        var lingrad2 = canCon.createLinearGradient(0,50,0,95)
+        lingrad2.addColorStop(.5,'#000')  // 中间是黑色,省去了开始的地方,说明从0到中间位置都是黑色
+        lingrad2.addColorStop(1,'rgb(0,0,0,0)')  // 末尾是透明的黑色
+        canCon.lineWidth = 2
+        canCon.fillStyle = lingrad
+        canCon.strokeStyle = lingrad2
+        canCon.fillRect(10,10,130,130)
+        canCon.strokeRect(50,50,50,50)
+
+        // 创建image对象,用作图案
+        var img = new Image()
+        img.src = './img.jpg'
+        img.onload = function() {
+            // 创建图案
+            var ptrn = canCon.createPattern(img,'repeat')  // no-repeat
+            canCon.fillStyle = ptrn
+            // canCon.fillRect(200,0,500,500)
+        }
+
+        // 模糊
+        canCon.shadowOffsetX = 2
+        canCon.shadowOffsetY = 2
+        canCon.shadowBlur = 30
+        canCon.shadowColor = 'rgb(0,0,0,0.5)'
+        // 创建image对象,用作图案
+        var img = new Image()
+        img.src = './img.jpg'
+        img.onload = function() {
+            var ptrn = canCon.createPattern(img, 'repeat')
+            canCon.fillStyle = ptrn
+            // canCon.fillRect(170,0,200,200)
+        }
+
+        // 填充规则
+        canCon.beginPath()
+        canCon.fillStyle='blue'
+        canCon.arc(300,200,30,0,Math.PI*2,true)
+        canCon.arc(300,200,15,0,Math.PI*2,true)
+        canCon.arc(300,200,45,0,Math.PI*2,true)
+        canCon.fill('evenodd')  // 奇数区域填充
+
+        // Path2D
+        var path1 = new Path2D()
+        path1.rect(10,10,100,100)
+        var path2 = new Path2D(path1)
+        path2.moveTo(220,60)
+        path2.arc(170,60,50,0,2*Math.PI*2)
+        // canCon.stroke(path2)
+
+    </script>
+</body>
+
+</html>

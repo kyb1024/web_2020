@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas3</title>
+    <style>
+        canvas {
+            display: block;
+            margin: 100px auto 0;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <!-- <video src="../video/空气冷凝集水器.mp4" width='400' controls="true" autoplay></video> -->
+    <canvas width='400' height='220'></canvas>
+    <script>
+        let canvas = document.querySelector('canvas')
+        let canCon = canvas.getContext('2d')
+
+        // 文本绘制
+        canCon.font='60px sans-serif'  // serif
+        // canCon.fillText('Hello world!',30,150)  // 还可加一个参数(最大在多宽区域内完成文字的渲染)
+        // canCon.strokeText("Hello world!",30,250)
+        // direction  文本方向  ltr rtl inherit(默认)
+        canCon.fillText('yfg',0,0)  // 位置以文字的基线为准
+        var text = canCon.measureText('Hello world!')  // 计算文字正常排列所占宽度
+        console.log(text)
+
+        // 图片绘制
+        let img = new Image()
+        img.src='../images/img.jpg'
+        // img.src='base64编码'
+        img.onload = function() {  // 必须等图片加载完成才能添加到canvas中
+            // canCon.drawImage(img,100,100,300,300)  // 坐标 大小
+        }
+
+        // canvas图片绘制之视频素材导入
+        let video = document.querySelector('video')
+        // video.addEventListener('play', function() {
+        //     timeCallback()
+        // });
+        let x = 10
+        function timeCallback() {
+            if(video.paused || video.ended) {
+                return
+            }
+            if(x>350) {
+                x = -150
+            }
+            // canCon.drawImage(video,0,0,400,220)
+            // canCon.font="16px serif"  //sans-serif
+            // canCon.fillText("小寇出品,高级水印",x+=0.3,20)
+            // setInterval(timeCallback,1000)
+        }
+
+        // 切片
+        img.onload = function() {
+            // canCon.drawImage(img,50,50,50,50,150,100,100,100)  // sx,sy,sWidth,sHeight,dx,dy,dWidth,dHeight
+        }
+
+        // canvas状态保存(当前应用的变形) 移动 旋转 缩放等
+        canCon.fillRect(0,0,150,150)  // 使用默认设置绘制一矩形
+        canCon.save()  // 保存默认状态
+        canCon.fillStyle='#09f'  // 在原有配置基础上对颜色做改变
+        canCon.fillRect(15,15,120,120)  // 使用新的设置绘制一矩形
+        canCon.save()  // 保存当前状态
+        canCon.fillStyle='#fff'  // 再次改变颜色配置
+        canCon.globalAlpha=0.5
+        canCon.fillRect(30,30,90,90)  // 使用新的配置绘制一矩形
+        canCon.restore()  // 重新加载之前的颜色状态
+        canCon.fillRect(45,45,60,60)  // 使用上一次的配置绘制一矩形
+        canCon.restore()  // 加载默认颜色配置
+        canCon.fillRect(60,60,30,30)  // 使用加载的配置绘制一矩形
+
+
+        // translate(x,y)  移动
+        // rotate(angle)  旋转
+        canCon.translate(150,150)  // 移动
+        canCon.rotate(Math.PI/4)  // 旋转坐标
+        canCon.fillRect(0,0,50,50)
+
+        // scal(x,y)  // 缩放,默认为1,比1小会缩小,比1大会放大,可以为负数
+        canCon.scale(0.4,0.4)
+        canCon.strokeRect(130,0,50,50)
+    </script>
+</body>
+</html>
