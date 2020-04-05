@@ -1,0 +1,26 @@
+/* components/person/person.wxss */
+.logincover {
+  position: absolute;
+  margin: 50rpx 30rpx 0;
+  width: 750rpx;
+  height: 150rpx;
+  opacity: 0;
+}
+
+.login {
+  margin-bottom: 150rpx;
+  box-shadow: 0 0 50rpx #ccc;
+  overflow: hidden;
+}
+
+.header_icon {
+  float: left;
+  margin: 50rpx;
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.nickName {
+  line-height: 250rpx;
+  font-size: 18px;
+}

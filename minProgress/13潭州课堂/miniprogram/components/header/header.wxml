@@ -1,0 +1,7 @@
+<!--components/header/header.wxml-->
+<view class="header" style="height:{{height}}px">
+  <view class="title" style="line-height:{{contentHeight}}px">
+    <image class="back" src="./back.png" wx:if="{{back}}" bindtap="back"></image>
+    <text class="title-content">{{title}}</text>
+  </view>
+</view>

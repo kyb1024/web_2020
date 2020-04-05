@@ -1,0 +1,19 @@
+<!--pages/login/login.wxml-->
+<view class="userInfo">
+  <view class="icon-image">
+    <image src="{{avatarUrl}}"></image>
+  </view>
+  <view class="nickName">{{nickName}}</view>
+</view>
+
+<button
+  type="primary"
+  bindgetuserinfo="getUserInfo"
+  open-type="getUserInfo"
+  wx:if="{{!isLogin}}"
+>登录</button>
+<button
+  type="primary"
+  bindtap="jump"
+  wx:else
+>跳转</button>

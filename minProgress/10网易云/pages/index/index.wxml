@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<!-- 公共头部 -->
+<view class="header">
+  <my-header name="网易云音乐"></my-header>
+  <!-- 公共导航 -->
+  <my-tabBar list="{{tabBarList}}" current="{{current}}" bindmyevent="handle"></my-tabBar>
+</view>
+
+<!-- 不同区域的展示 -->
+<!-- 推荐歌曲 -->
+<view class="recommend" wx:if="{{current==='recommend'}}"> 这是recommend组件</view>
+
+<!-- 热歌榜 -->
+<view class="hot" wx:if="{{current==='hot'}}">这是hot组件</view>
+
+<!-- 搜索 -->
+<view class="search" wx:if="{{current==='search'}}">这是search组件</view>
+
+<my-player songid="{{id}}"></my-player>

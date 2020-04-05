@@ -1,0 +1,22 @@
+<!--pages/question/question.wxml-->
+<my-header 
+  title="答题 ({{key}})"
+  back
+  bindbackBefore="confirm"
+/>
+
+<view class="progress">{{current+1}}/{{total}} (剩余时间:{{min}}:{{sec}})</view>
+
+<swiper class="question" current="{{current}}" bindchange="change">
+  <swiper-item wx:for="{{questionList}}" wx:key="index">
+    <view class="description">{{item.description}}</view>
+    <view class="code">{{item.code}}</view>
+    <!-- <view wx:for="{{item.selection}}" wx:key="value">{{item.value}}</view> -->
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:for="{{item.selection}}" wx:key="value">
+        <radio value="{{item.value}}">{{item.value}}</radio>
+      </label>
+    </radio-group>
+  </swiper-item>
+</swiper>
+<button type="primary" bindtap="next">下一题</button>

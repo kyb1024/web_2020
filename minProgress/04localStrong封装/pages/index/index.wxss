@@ -1,0 +1,9 @@
+/**index.wxss**/
+.input {
+  margin: 0 auto;
+  padding-left: 3px;
+  width: 80vw;
+  height: 5vh;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}

@@ -1,0 +1,13 @@
+/* pages/listPage/listPage.wxss */
+.search {
+  margin: 0 auto 5vh;
+  padding-left: 5px;
+  width: 70vw;
+  border: 1px solid #ccc;
+}
+view {
+  margin: 0 0 10px 5vh;
+}
+.btn {
+  margin-top: 50vh;
+}

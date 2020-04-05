@@ -1,0 +1,23 @@
+<!--index.wxml-->
+<!-- 公共头部 -->
+<my-header title="{{pubTitle}}" />
+
+<!-- 正文内容区域 -->
+<swiper class="swiper" current="{{current}}" bindchange="swiperchange">
+  <swiper-item class="swiper-item">
+    <my-recommend></my-recommend>
+  </swiper-item>
+  <swiper-item>
+    <my-message></my-message>
+  </swiper-item>
+  <swiper-item>
+    <my-person></my-person>
+  </swiper-item>
+</swiper>
+
+<!-- tabbar 底部切换 -->
+<my-tabbar 
+  current="{{currentPage}}"
+  bindchange="handlechange"
+  tabbarList="{{tabbarList}}"
+/>

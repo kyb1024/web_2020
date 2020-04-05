@@ -1,0 +1,10 @@
+<!--index.wxml-->
+
+<!-- <my-com value="asdasd">你好</my-com> -->
+
+<my-com value="asdasd">hello
+  <view slot="before">你好</view>
+  <view slot="after">kyb</view>
+</my-com>
+<view>----------------------my-com1结束</view>
+<my-com2 value="123"></my-com2>

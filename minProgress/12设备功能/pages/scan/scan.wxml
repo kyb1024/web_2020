@@ -1,0 +1,2 @@
+<!--pages/scan/scan.wxml-->
+<camera mode="scanCode" class="camera" bindscancode="scanCode"></camera>

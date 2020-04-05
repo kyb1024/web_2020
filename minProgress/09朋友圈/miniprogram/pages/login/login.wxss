@@ -1,0 +1,14 @@
+/* pages/login/login.wxss */
+.icon-image {
+  margin: 100rpx auto;
+  width: 250rpx;
+  height: 250rpx;
+}
+.icon-image image {
+  width: 250rpx;
+  height: 250rpx;
+}
+.nickName {
+  margin-bottom: 100rpx;
+  text-align: center;
+}

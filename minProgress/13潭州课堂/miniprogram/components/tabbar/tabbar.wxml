@@ -1,0 +1,21 @@
+<!--components/tabbar/tabbar.wxml-->
+<view class="tabbar">
+  <view 
+    wx:for="{{tabbarList}}" 
+    wx:key="content" 
+    class="tab-item" 
+    bindtap="change"
+    data-content="{{item.content}}"
+  >
+    <image 
+      src="{{current===item.content?item.activepath:item.path}}" 
+      class="icon"
+    ></image>
+    <view 
+      class="tab-title" 
+      style="color:{{current===item.content?'#1296db':'#ccc'}}"
+    >
+      {{item.title}}
+    </view>
+  </view>
+</view>

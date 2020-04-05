@@ -1,0 +1,6 @@
+<!--component/tabBar/tabBar.wxml-->
+<view class="tabBar">
+  <view  wx:for="{{list}}" wx:key="*this" class="{{item.name===current?'active':''}}" data-num="{{item.name}}" bindtap="change">
+    <text>{{item.title}}</text>
+  </view>
+</view>

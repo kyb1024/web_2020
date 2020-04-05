@@ -1,0 +1,19 @@
+<!--components/recommend/recommend.wxml-->
+<view class="search" bindtap="searchPage" bindtap="jumpToSearch">
+  <image src="./search.png"></image>
+  请输入搜索内容
+</view>
+
+<!-- 提示关键词 -->
+<scroll-view class="select" scroll-x>
+  <view wx:for="{{selectList}}" wx:key="name" bindtap="search" data-keywords="{{item.name}}">{{item.name}}</view>
+</scroll-view>
+
+<!-- 轮播 -->
+<swiper class="swiper">
+  <swiper-item wx:for="{{swiperList}}" wx:key="id">
+    <image src="{{item.icon}}"></image>
+  </swiper-item>
+</swiper>
+
+<my-recommend_list></my-recommend_list>

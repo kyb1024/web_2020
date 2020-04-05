@@ -1,0 +1,10 @@
+<!--pages/index2/index2.wxml-->
+
+<view bindtap="back" class="back">返回</view>
+<view wx:for="{{picList}}" wx:key="di" class="box">
+  <image mode="widthFix" bindtap="preview" data-src="{{item.middleURL}}" src="{{item.middleURL}}" lazy-load="true"></image>
+  <view data-src="{{item.middleURL}}" class="download" bindtap="download">
+    <image src="/source/icon/download.png" class="download-img"></image>
+  </view>
+</view>
+

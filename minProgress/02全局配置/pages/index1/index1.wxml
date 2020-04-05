@@ -1,0 +1,7 @@
+<!--pages/index1/index1.wxml-->
+
+<block>
+  <view wx:if="{{state}}">我今天心情好!</view>
+  <view wx:else>我今天心情不好!</view>
+</block>
+<button bindtap="change">转换心情</button>

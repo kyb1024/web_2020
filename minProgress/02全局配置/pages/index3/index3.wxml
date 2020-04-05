@@ -1,0 +1,7 @@
+<!--pages/index3/index3.wxml-->
+
+<import src="../templete/listItem" />
+
+<template is="article1" wx:for="{{news}}" wx:key="title" data="{{item}}" />
+<view>----------------------------------------------</view>
+<template is="article2" wx:for="{{news}}" wx:key="title" data="{{...item}}" />

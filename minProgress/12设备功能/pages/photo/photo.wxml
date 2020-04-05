@@ -1,0 +1,4 @@
+<!--pages/photo/photo.wxml-->
+<camera class="camera"></camera>
+<button bindtap="record">拍摄</button>
+<image src="{{path}}" class="image"></image>

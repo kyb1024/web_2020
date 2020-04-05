@@ -1,0 +1,32 @@
+/* pages/publish/publish.wxss */
+.content {
+  margin: 0 auto;
+  padding: 8rpx 16rpx;
+  width: 80vw;
+  height: 18vh;
+  border: 1px solid #ccc;
+}
+.btn-list {
+  margin: 24rpx auto;
+  width: 84vw;
+}
+.btn-list button {
+  margin-right: 2vw;
+}
+
+.pic-list {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  overflow: hidden;
+  width: 690rpx;
+}
+.pic-list image {
+  width: 230rpx;
+  height: 230rpx;
+}
+.voice {
+  margin-left: 3vw;
+  display: inline-block;
+}

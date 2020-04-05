@@ -1,0 +1,13 @@
+function formateTime(num) {
+  let arr = new Date(num).toString().split(" ")
+  let path = {
+    "jan": 1,
+    "feb": 2,
+    "May": 5
+  }
+
+  let str = arr[3] + "年" + path[arr[1]] + "月" + arr[2] + "日 " + arr[4]
+
+  return str
+}
+module.exports.formateTime = formateTime

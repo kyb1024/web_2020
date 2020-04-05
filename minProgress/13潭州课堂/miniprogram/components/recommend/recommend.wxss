@@ -1,0 +1,47 @@
+/* components/recommend/recommend.wxss */
+.search {
+  margin: 20rpx 30rpx;
+  height: 70rpx;
+  background-color: #ddd;
+  border-radius: 10rpx;
+  line-height: 70rpx;
+  text-align: center;
+  color: #888;
+}
+
+.search image {
+  margin: 0 15rpx;
+  width: 50rpx;
+  height: 50rpx;
+  vertical-align: -8rpx;
+}
+
+.select {
+  display: flex;
+  margin: auto;
+  width: 700rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  white-space: nowrap;
+}
+
+.select view {
+  display: inline-block;
+  margin-right: 30rpx;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.swiper {
+  margin: 15rpx auto 25rpx;
+}
+
+.swiper, .swiper swiper-item, .swiper swiper-item image {
+  /* width: 710rpx; */
+  height: 350rpx;
+}
+
+.swiper swiper-item image {
+  margin: 0 20rpx;
+  width: 710rpx;
+}

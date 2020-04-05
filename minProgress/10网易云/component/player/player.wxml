@@ -1,0 +1,8 @@
+<!--component/player/player.wxml-->
+<!-- 全局音频组件 -->
+<view class="player">
+  <view class="title"></view>
+  <view class="playbtn">
+    <image src="./playbtn.png" bindtap="play"></image>
+  </view>
+</view>

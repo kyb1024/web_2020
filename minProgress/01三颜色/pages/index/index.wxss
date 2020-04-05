@@ -1,0 +1,6 @@
+/**index.wxss**/
+.box {
+  margin: auto;
+  width: 90vw;
+  height: 50vh;
+}

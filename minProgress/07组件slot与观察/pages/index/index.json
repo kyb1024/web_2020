@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "my-com": "/component/my-com/my-com",
+    "my-com2": "/component/my-com2/my-com2"
+  }
+}

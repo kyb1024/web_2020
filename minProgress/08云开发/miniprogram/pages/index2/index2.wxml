@@ -1,0 +1,10 @@
+<!--pages/index2/index2.wxml-->
+<button type="primary" bindtap="cloudFunction">云函数调用</button>
+
+<button type="primary" bindtap="uploadfile">上传图片到云</button>
+<button type="primary" bindtap="downloadfile">下载图片</button>
+
+<button type="primary" bindtap="dbAdd">数据添加</button>
+<button type="primary" bindtap="dbDelete">数据删除</button>
+<button type="primary" bindtap="dbChange">数据修改</button>
+<button type="primary" bindtap="dbFind">数据查询</button>

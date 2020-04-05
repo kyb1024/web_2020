@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "my-recommend_list": "./recommend_list/recommend_list"
+  }
+}

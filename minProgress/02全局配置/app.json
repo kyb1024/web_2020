@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/index1/index1",
+    "pages/index2/index2",
+    "pages/index3/index3",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#dfdfdf",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "全局配置",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index1/index1",
+      "text": "页面一",
+      "iconPath": "source/icon/menu.png",
+      "selectedIconPath": "source/icon/menu-active.png"
+    },{
+      "pagePath": "pages/index2/index2",
+      "text": "页面二",
+      "iconPath": "source/icon/find.png",
+      "selectedIconPath": "source/icon/find-active.png"
+    },{
+      "pagePath": "pages/index3/index3",
+      "text": "页面三",
+      "iconPath": "source/icon/person.png",
+      "selectedIconPath": "source/icon/person-active.png"
+    }]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

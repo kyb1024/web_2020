@@ -1,0 +1,7 @@
+/* pages/photo/photo.wxss */
+.camera {
+  height: 80vh;
+}
+.image {
+  height: 80vh;
+}

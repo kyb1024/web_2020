@@ -1,0 +1,12 @@
+/* pages/detail/detail.wxss */
+.info {
+  margin: 15vh auto;
+  width: 80vw;
+}
+.info>view {
+  margin-bottom: 4vh;
+}
+.info>view>text {
+  float: left;
+  width: 25vw;
+}

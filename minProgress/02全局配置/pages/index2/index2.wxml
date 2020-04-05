@@ -1,0 +1,10 @@
+<!--pages/index2/index2.wxml-->
+
+<!-- <view wx:for="{{list}}" wx:key="*this">
+  {{item}}<checkbox></checkbox>
+</view> -->
+<view wx:for="{{list}}" wx:key="value">
+  {{item.value}}<checkbox></checkbox> ------{{index}}
+</view>
+<button bindtap="plus">增加</button>
+<button bindtap="random">打乱</button>

@@ -1,0 +1,20 @@
+/* component/header/header.wxss */
+.header {
+  box-sizing: border-box;
+  padding-top: 90rpx;
+  width: 750rpx;
+  height: 170rpx;
+  background-color: #d43c33;
+}
+.icon {
+  margin: 0 30rpx;
+}
+.icon, .icon image {
+  float: left;
+  width: 40rpx;
+  height: 40rpx;
+}
+.title {
+  color: #fff;
+  font-weight: bold;
+}

@@ -1,0 +1,4 @@
+/* pages/scan/scan.wxss */
+.camera {
+  height: 100vh;
+}

@@ -1,0 +1,3 @@
+<!--component/my-component/my-component.wxml-->
+<view class="context">{{value}}这是我自己做出来的组件{{count}}</view>
+<text bindtap="handletap">点我</text>

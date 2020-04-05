@@ -1,0 +1,6 @@
+<!--index.wxml-->
+<view class="box" style="background-color:rgb({{r}},{{g}},{{b}})"></view>
+
+<slider max="256" bindchanging="change" show-value="true" data-color="r">红色</slider>
+<slider max="256" bindchanging="change" show-value="true" data-color="g">绿色</slider>
+<slider max="256" bindchanging="change" show-value="true" data-color="b">蓝色</slider>

@@ -1,0 +1,17 @@
+<!--pages/publish/publish.wxml-->
+<!-- <input class="content" bindinput="input"></input> -->
+<textarea  class="content" bindinput="input"></textarea>
+
+<!-- 上传图片 -->
+<view class="btn-list">
+  <button type="primary" bindtap="uploadPic" size="mini">上传图片</button>
+  <button type="primary" size="mini" bindtouchstart="startRecord" bindtouchend="endRecord">录音</button>
+  <button type="primary" bindtap="publish" size="mini">发表动态</button>
+  <view wx:if="{{voiceFilePaths}}" class="voice">
+    <text bindtap="playVoice">播放</text>
+  </view>
+</view>
+
+<view class="pic-list">
+  <image wx:for="{{picList}}" wx:key="*this" src="{{item}}" mode="aspectFix"></image>
+</view>

@@ -1,0 +1,10 @@
+<!--components/person/person.wxml-->
+
+<view class="login">
+  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="logincover"
+  wx:if="{{!islogin}}">登录</button>
+  <image src="{{avatarUrl}}" class="header_icon"></image>
+  <text class="nickName">{{nickName}}</text>
+</view>
+
+<button bindtap="upload" type="primary">上传题目</button>

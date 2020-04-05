@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view>{{code}}</view>
+<view class="container">
+  <view>
+    <text>1.相机拍照功能</text>
+    <button type="primary" class="photo" bindtap="takePhoto">拍照</button>
+  </view>
+  <view>
+    <text>2.相机扫描二维码功能</text>
+    <button type="primary" class="code" bindtap="scanCode">扫描</button>
+  </view>
+  <view>
+    <text>3.地图显示,地理位置的获取</text>
+    <button type="primary" class="map" bindtap="map">获取地图</button>
+  </view>
+  <view>
+    <text>4.视频</text>
+    <button type="primary" class="video" bindtap="playVideo">播放视频</button>
+  </view>
+</view>

@@ -1,0 +1,5 @@
+<!--index.wxml-->
+
+  <input placeholder="请输入" bindblur="change" class="input"></input>
+  <button bindtap="add">发送</button>
+  <view wx:for="{{list}}" wx:key="*this" bindlongpress="delete" data-value="{{item.value}}">{{item.value}}</view>

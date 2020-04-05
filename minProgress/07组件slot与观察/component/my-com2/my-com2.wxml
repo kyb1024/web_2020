@@ -1,0 +1,5 @@
+<!--component/my-com2/my-com2.wxml-->
+
+<!-- 单插槽 -->
+<text bindtap="say" style="color:red"><slot></slot>this is my-com2{{content}}</text>
+

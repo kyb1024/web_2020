@@ -1,0 +1,11 @@
+<!--component/my-com/my-com.wxml-->
+
+<!-- 单插槽 -->
+<text bindtap="say"><slot></slot>{{content}}</text>
+<view>----------------------------</view>
+<!-- 多插槽 -->
+<view>
+  <slot name="before"></slot>
+  this is 多插槽
+  <slot name="after"></slot>
+</view>

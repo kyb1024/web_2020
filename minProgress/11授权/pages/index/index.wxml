@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<view class="container">
+  <button type="primary" bindtap="authbtn" wx:if="{{!state}}">更改授权</button>
+  <button type="primary" bindtap="next" wx:if="{{state}}">下一步操作</button>
+</view>

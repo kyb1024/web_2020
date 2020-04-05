@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "my-header": "/component/header/header",
+    "my-tabBar": "/component/tabBar/tabBar",
+    "my-player": "/component/player/player"
+  }
+}

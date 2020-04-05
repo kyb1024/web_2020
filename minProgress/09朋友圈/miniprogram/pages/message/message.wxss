@@ -1,0 +1,65 @@
+/* pages/message/message.wxss */
+page{
+  background: #e4e4e4;
+}
+.header{
+  height: 400rpx;
+  background: url("http://pic4.58cdn.com.cn/zhuanzh/n_v2efa39946087644c69182e1a2c4eda574.jpg?w=750&h=0") center/cover;
+}
+.header-icon {
+  margin: 0 auto;
+  padding: 60rpx 0;
+  width: 150rpx;
+  height: 150rpx;
+}
+.header-icon image {
+  width: 150rpx;
+  height: 150rpx;
+  /* border-radius: 50%;
+  overflow: hidden; */
+}
+.header .publish {
+  display: block;
+  margin: 0 auto;
+  width: 150rpx;
+}
+
+.list-item {
+  margin-top: 30rpx;
+  padding: 30rpx;
+  /* overflow: hidden; */
+  background: #fff;
+}
+.user {
+  height: 100rpx;
+  margin-bottom: 10rpx;
+}
+.user-icon, .user-icon image {
+  float: left;
+  margin-right: 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.nickName {
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.text-content {
+  margin-bottom: 20rpx;
+}
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.image-list image {
+  width: 230rpx;
+  height: 230rpx;
+}
+.detail {
+  padding: 20rpx 0;
+  height: 50rpx;
+  line-height: 50rpx;
+}

@@ -1,0 +1,14 @@
+<!--pages/listPage/listPage.wxml-->
+<input class="search" bindinput="search" placeholder="从{{listLength}}位用户中搜索"></input>
+
+<view wx:for="{{list}}"
+  wx:key="user" 
+  bindtap="jumpToDetail"
+  data-person="{{item}}"
+  bindlongpress="delete"
+>
+  {{item.user}}({{item.phone}})
+</view>
+
+<button type="primary" class="btn" bindtap="jump">添加联系人</button>
+

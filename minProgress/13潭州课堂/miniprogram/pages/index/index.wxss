@@ -1,0 +1,9 @@
+/**index.wxss**/
+.swiper {
+  display: block;
+  height: 80vh;
+}
+
+.swiper-item {
+  overflow-y: scroll;
+}

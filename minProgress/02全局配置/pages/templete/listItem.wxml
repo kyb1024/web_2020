@@ -1,0 +1,9 @@
+<template name="article1">
+  <view class="title">{{item.title}}</view>
+  <view class="content">{{item.content}}</view>
+</template>
+
+<template name="article2">
+  <view class="title">{{title}}</view>
+  <view class="content">{{content}}</view>
+</template>

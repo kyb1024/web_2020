@@ -1,0 +1,7 @@
+<!--index.wxml-->
+ <image mode="widthFix" class="bg" src="http://pic4.58cdn.com.cn/zhuanzh/n_v2efa39946087644c69182e1a2c4eda574.jpg?w=750&h=0"></image>
+ <view class="title">图片搜索</view>
+ <view class="search">
+  <button class="btn" size="mini" style="padding:0; float:right" bindtap="search">搜索</button>
+  <input class="input" bindblur="record"></input>
+ </view>

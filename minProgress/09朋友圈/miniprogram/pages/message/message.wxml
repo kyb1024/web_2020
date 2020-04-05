@@ -1,0 +1,34 @@
+<!--pages/message/message.wxml-->
+<view class='header'>
+  <view class='header-icon'>
+    <image src='{{usericon}}' mode="aspectFill"></image>
+  </view>
+  <button 
+    class='publish' 
+    type="primary"
+    size='mini'
+    bindtap="publish"
+  >发表</button>
+</view>
+
+<!-- 展示朋友圈列表 -->
+<view wx:for="{{messageList}}" wx:key="_id" class="list-item">
+  <view class="user">
+    <view class="user-icon">
+      <image src="{{item.userInfo.avatarUrl}}"></image>
+    </view>
+    <view class="nickName">{{item.userInfo.nickName}}</view>
+  </view>
+  <view class="content">
+    <view class="text-content">{{item.content}}</view>
+    <view class="image-list">
+      <image wx:for="{{item.fileList}}" wx:key="*this" src="{{item}}" lazy-load="true"></image>
+    </view>
+  </view>
+  <view class="detail">
+    <!-- <wxs src="./formateTime.wxs" module="formateTime"></wxs> -->
+    <view class="time">{{item.time}}</view>
+    <view class="icon-good"></view>
+    <view class="icon-favourite"></view>
+  </view>
+</view>

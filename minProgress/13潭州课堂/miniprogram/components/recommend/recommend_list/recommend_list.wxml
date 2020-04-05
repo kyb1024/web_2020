@@ -1,0 +1,9 @@
+<!--components/recommend/reommend_list/recommend_list.wxml-->
+<swiper class="list">
+  <swiper-item wx:for="{{lessonList}}" wx:key="index" class="flex">
+    <view wx:for="{{item}}" wx:key="id" class="lesson">
+      <image src="http://res.shiguangkey.com/{{item.cover}}"></image>
+      <view class="title">{{item.courseName}}</view>
+    </view>
+  </swiper-item>
+</swiper>

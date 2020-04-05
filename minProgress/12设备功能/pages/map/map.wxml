@@ -1,0 +1,8 @@
+<!--pages/map/map.wxml-->
+<map 
+  longitude="{{longitude}}" 
+  latitude="{{latitude}}" 
+  class="map"
+  show-compass="true"
+  enable-3D="true"
+></map>

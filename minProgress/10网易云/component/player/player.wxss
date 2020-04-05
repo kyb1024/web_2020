@@ -1,0 +1,13 @@
+/* component/player/player.wxss */
+.player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 750rpx;
+  height: 150rpx;
+  border-top: 1px solid #aaa;
+}
+.playbtn, .playbtn image {
+  width: 70rpx;
+  height: 70rpx;
+}

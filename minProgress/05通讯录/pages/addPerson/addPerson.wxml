@@ -1,0 +1,8 @@
+<!--pages/addPerson/addPerson.wxml-->
+<view class="form">
+  <view wx:for="{{list}}" wx:key="name" class="{{item.name}}">
+    <text>{{item.chinese}}: </text>
+    <input bindinput="inputChange" data-name="{{item.name}}"></input>
+  </view>
+  </view>
+<button type="primary" bindtap="submit">提交</button>
