@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>three.js01</title>
+    <script src="./lib/three.min.js"></script>
+    <script src="./lib/OrbitControls.js"></script>
+    <style>
+        * {
+            margin: 0;
+        }
+        body {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="three-canvas"></canvas>
+
+    <script>
+        // 初始化
+        let width = window.innerWidth, 
+            height = window.innerHeight
+        const canvas = document.querySelector("#three-canvas")
+        window.onload = resize
+        window.onresize = resize
+
+        function resize() {
+            canvas.width = width
+            canvas.height = width
+            renderer.setSize(width, height)
+            // 更新相机宽高比
+            camera.aspect = width/height
+            // 新的比例应用到世界坐标系中
+            camera.updateProjectionMatrix()
+        }
+
+        // 创建立方体 网格体
+        const geometry = new THREE.BoxGeometry(1, 2, 3)
+        // 基础简单材质
+        const material = new THREE.MeshNormalMaterial()
+        // 实际的物体
+        const box = new THREE.Mesh(geometry, material)
+
+        // 创建场景
+        const scene = new THREE.Scene()
+        // 将盒子添加到场景中
+        scene.add(box)
+
+        // 透视相机
+        const camera = new THREE.PerspectiveCamera(75, width/height, 0.01, 10000)
+        // 相机摆放: 相机位置,相机朝向
+        camera.position.z = 8
+        camera.lookAt(0,0,0)
+
+        const control = new THREE.OrbitControls(camera)
+
+        // 渲染器在构造的时候, 是链接canvas的
+        const renderer = new THREE.WebGLRenderer({canvas})
+        renderer.setSize(width, height)
+
+        // 动画模块
+        function animation() {
+            requestAnimationFrame(animation)
+            box.rotation.x += 0.01
+            box.rotation.y += 0.01
+            // 更新控制器
+            control.update()
+            // 将场景被相机拍摄到的内容渲染出来
+            renderer.render(scene, camera)
+        }
+        animation()
+    </script>
+</body>
+</html>

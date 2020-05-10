@@ -1,0 +1,12 @@
+.list {
+    width: 200px;
+    background-color: #ccc;
+}
+.list ul {
+    margin: 0;
+    height: 100vh;
+}
+a {
+    color: #222;
+    text-decoration: none;
+}
