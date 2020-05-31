@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东购物车</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" 
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+    crossorigin="anonymous">
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app" class="container">
+        <table class="table">
+            <caption class="h3 text-center text-success">京东购物车</caption>
+            <tr>
+                <td>
+                    <label for="all">全选</label>
+                    <input id="all" type="checkbox" v-model="all" @change="checkAll">
+                </td>
+                <td>商品</td>
+                <td>商品描述</td>
+                <td>单价</td>
+                <td>数量</td>
+                <td>小计</td>
+                <td>操作</td>
+            </tr>
+            <tr v-for="(product,index) of products">
+                <td>
+                    <input type="checkbox" v-model="product.isSelected" @change="checkSingle" >
+                </td>
+                <td>
+                    <img :src="product.imgUrl"></img>
+                </td>
+                <td>{{product.bookName}}</td>
+                <td>{{product.price | xxx(2)}}</td>
+                <td>
+                    <input type="number" v-model="product.amount" min=0>
+                </td>
+                <td>{{product.price*product.amount | xxx(2)}}</td>
+                <td>
+                    <button type="button" class="btn btn-danger" @click="handleDeleteItem(index)">删除</button>
+                </td>
+            </tr>
+            <tr>
+                <td>总价: {{sum | xxx(2)}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                all:false, //全选按钮的状态
+                products:[  //初始的数据
+                    {
+                        isSelected:false,
+                        imgUrl:"https://img10.360buyimg.com/cms/s80x80_jfs/t6094/107/710811867/382815/4d54717/592bf165N755a88f0.jpg",
+                        bookName:'深入浅出Node.js',
+                        price:	54.50,
+                        amount:1,
+                    },
+                    {
+                        isSelected:false,
+                        imgUrl:"https://img10.360buyimg.com/cms/s80x80_jfs/t9508/97/2285719018/62961/99c5b1b7/59f299b4Nc9e78adb.jpg",
+                        bookName:'Vue.js实战',
+                        price:	62.4,
+                        amount:1,
+                    }
+                ]
+            },
+            filters: {  // 过滤器  不改变数据 只改变数据在页面的展示
+                xxx(price,num) {
+                    // console.log(arguments)
+                    return "￥"+price.toFixed(num)+"元"
+                }
+            },
+            computed: {
+                sum() {
+                    return this.products.reduce((pre, cur) => {
+                        return pre + (cur.isSelected? cur.price * cur.amount:0)
+                    }, 0)
+                }
+            },
+            methods: {
+                checkAll(){
+                    this.products.forEach((product)=>{
+                        product.isSelected = this.all
+                    })
+                },
+                checkSingle() {
+                    this.all = this.products.every(product => product.isSelected)
+                },
+                handleDeleteItem(index) {
+                    this.products.splice(index, 1)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

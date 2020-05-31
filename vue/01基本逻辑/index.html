@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ commsg }}
+        <br/>
+        {{ msg }}
+        <input type="text" v-model="msg"></input>
+        <p v-once>{{ msg }}</p>
+        <p v-html="msg2"></p>
+		
+		<p v-html="msg2" v-if="toggle">{{ msg2 }}</p>
+		<p v-else="!toggle">你吃了没</p>
+		<p v-show="toggle">今天天气不错!</p>
+    </div>
+
+    <script type="text/javascript">
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                msg: '123',
+                msg2: "<p style='color: red;'>你好世界</p>",
+				toggle: false
+            },
+
+            computed: { // 最开始算出来的值发生变化时computed会重新计算
+                // commsg: function() {
+                //     this.msg += "v2.0"
+                //     return this.msg
+                // }
+                commsg: {
+                    get: function() {
+                        return this.msg + "3.0"
+                    },
+                    set: function(newValue) {
+                        this.msg = newValue
+                    }
+                }
+            },
+
+            watch: {
+                msg: function(val) {
+                    if(val === "kou") {
+                        this.msg = "超级帅"
+                    }
+                    console.log(val)
+                }
+            },
+
+            methods: {
+                reversedMsg: function() {
+                    return this.msg.split("").reverse().join("")
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>

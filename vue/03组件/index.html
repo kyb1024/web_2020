@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识vue组件</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <son></son>
+    </div>
+
+    <template id="test">
+        <ul>
+            我是子组件
+        </ul>
+    </template>
+
+    <!-- <script type="text/template" id="test">
+        <ul>
+            我是子组件
+        </ul>
+    </script> -->
+
+    <script>
+        /*
+        *  1.定义组件
+        *  2.挂载组件(son组件挂载到跟组件上)
+        *  3.使用组件
+        *
+        *  必须挂载到父组件中才可以使用的组件 叫做局部组件
+        *
+        **/
+
+        // 全局组件
+        // Vum.component("son", {
+        //     template: "#test"
+        // })
+        // 局部组件
+        let son = {
+            // template: `<div>我是子组件</div>`
+            template: "#test",
+            data: function() {
+                console.log("执行")
+                return {
+
+                }
+            }
+        }
+
+        let vm = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            components: {
+                son
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue父组件向子组件传值</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <son @xxx="handleClick"></son>
+    </div>
+
+    <template id="test">
+        <div>
+            <p>我是子组件</p>
+            <button @click="handleClick">点击</button>
+        </div>
+    </template>
+
+    <script>
+        /*
+        *  
+        **/
+
+        let son = {
+            template: "#test",
+            data: function() {
+                return {
+                    name: "我是子组件的数据"
+                }
+            },
+            methods: {
+                handleClick: function() {  // 点击按钮把子组件data选项中的数据传递给父组件
+                    this.$emit("xxx", this.name)  // 向父组件发射xxx事件
+                }
+            }
+        }
+
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                msg1: 1,
+                msg2: "第二条数据"
+            },
+            components: {
+                son
+            },
+            methods: {
+                handleClick: function(value) {
+                    console.log(arguments)
+                    console.log("事件触发了",value)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

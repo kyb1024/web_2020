@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue父组件向子组件传值</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <son :msg1="msg1" :msg2="msg2"></son>
+    </div>
+
+    <template id="test">
+        <ul>
+            我是子组件
+        </ul>
+    </template>
+
+    <script>
+        /*
+        *  父组件向子组件传递数据, 使用属性传值的方式
+        **/
+
+        let son = {
+            template: "#test",
+            // props: ["msg1","msg2"]  // 用来接收父组件传递的数据
+            props: {
+                msg1: {
+                    // type: Number,  // msg1必须是数字类型  String  Boolean  Array  Object  Function  Promise
+                    type: [Number, String],
+                    default: "我是默认值",  // 当没有msg1属性时生效
+                    required: true,  // 设置属性必须传 
+                    // validator(value) {
+                    //     console.log(value,arguments)
+                    //     return value > 10
+                    // }
+                }
+            }
+        }
+
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                msg1: 1,
+                msg2: "第二条数据"
+            },
+            components: {
+                son
+            }
+        })
+    </script>
+</body>
+</html>

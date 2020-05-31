@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插槽</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <test>
+            我是子组件
+            <template v-slot:cha1>
+                <p>我是插槽1</p>
+            </template>
+            <template v-slot:cha2>
+                <p>我是插槽2</p>
+            </template>
+
+            <!-- <template v-slot:cha4="cha4props">
+                <p>{{cha4props.msg1}}---{{cha4props.msg2}}</p>
+            </template> -->
+            <template v-slot:cha4="{msg1, msg2}"> 
+                            <!-- {msg1:msg1, msg2:msg2}  v-slot: => # -->
+                <p>{{msg1}}---{{msg2}}</p>
+            </template>
+        </test>
+        
+    </div>
+    
+    <script>
+        Vue.component("test",{
+            template:`
+                <div>
+                    <slot>插槽内的数据</slot>   
+
+                    <slot name="cha1">插槽1内的数据</slot> 
+                    <slot name="cha2">插槽2内的数据</slot> 
+                    <slot name="cha3">插槽3内的数据</slot> 
+
+                    <slot name="cha4" v-bind:msg1="msg1" v-bind:msg2="msg2">插槽4内的数据</slot> 
+                </div>
+            `,
+            data() {
+                return {
+                    msg1: "hello world",
+                    msg2: "hello China"
+                }
+            }
+        })
+
+        let vm = new Vue({
+            el: "#app",
+            data: {
+
+            }
+        })
+    </script>
+</body>
+</html>

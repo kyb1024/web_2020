@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态组件</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <button v-for="tab in tabs" v-on:click="currentTab=tab">{{tab}}</button> -->
+        <button v-for="tab in tabs" v-on:click="currentTab=tab">{{tab.name}}</button>
+        <!-- <component v-bind:is="currentTabComponent"></component> -->
+        <component v-bind:is="currentTab.component"></component>
+    </div>
+
+    <script>
+        // Vue.component("tab-home", {
+        //     template: `
+        //         <div>主页选项卡</div>
+        //     `
+        // })
+        // Vue.component("tab-news", {
+        //     template: `
+        //         <div>新闻选项卡</div>
+        //     `
+        // })
+        // Vue.component("tab-img", {
+        //     template: `
+        //         <div>图片选项卡</div>
+        //     `
+        // })
+
+        let tabs = [
+            {
+                name: "home",
+                component: {
+                    template: `
+                    <div>新闻选项卡</div>
+                    `
+                }
+            }, {
+                name: "news",
+                component: {
+                    template: `
+                    <div>主页选项卡</div>
+                    `
+                }
+            }, {
+                name: "img",
+                component: {
+                    template: `
+                    <div>图片选项卡</div>
+                    `
+                }
+            }
+        ]
+
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                // currentTab: "home",
+                currentTab: tabs[0],
+                // tabs: ["home","news","img"]
+                tabs: tabs
+            },
+            // computed: {
+            //     currentTabComponent() {
+            //         return "tab-" + this.currentTab
+            //     }
+            // }
+        })
+    </script>
+    
+</body>
+</html>

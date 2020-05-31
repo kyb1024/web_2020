@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>生命周期</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<button type="button" v-on:click="changeCom">切换组件</button>
+			<component v-bind:is="currentCom"></component>
+		</div>
+
+		<script type="text/javascript">
+			let vm1 = Vue.component("test", {
+				data() {
+					return {
+						message: '你好世界'
+					}
+				},
+				methods: {
+					add() {
+						this.message+= "1";
+					},
+					boom() {
+						this.$destroy();
+					}
+				},
+				template: `
+					<div>
+						<h1>{{message}}</h1>
+						<button v-on:click="add">点击改变数据</button>	
+						<button v-on:click="boom">点击销毁组件</button>
+					</div>
+				`,
+				beforeCreate() {
+					this.name = '万章';
+					console.group('------beforeCreate创建前状态------');
+					// %c提供css样式的格式化字符串  %s 字符串
+					console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
+					console.log("%c%s", "color:red", "data   : " + this.$data); //undefined 
+					console.log("%c%s", "color:red", "message: " + this.message) //undefined
+					console.log("beforeCreate阶段11");
+				},
+				created() {
+					console.group('------created创建完毕状态------');
+					console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
+					console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化 
+					console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+					console.log(`created阶段12`)
+				},
+				beforeMount() {  // 模板解析
+					console.group('------beforeMount挂载前状态------');
+					console.log("%c%s", "color:red", "el     : " + (this.$el)); //已被初始化
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化  
+					console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+					console.log(`beforeMount阶段13`)
+				},
+				mounted() {  // 内容挂载
+					console.group('------mounted 挂载结束状态------');
+					console.log("%c%s", "color:red", "el     : " + this.$el); //已被初始化
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
+					console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+					console.log(`mounted阶段14`)
+				},
+				beforeUpdate() {
+					console.group('beforeUpdate 更新前状态===============》');
+					console.log("%c%s", "color:red", "el     : " + this.$el);
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : " + this.$data);
+					console.log("%c%s", "color:red", "message: " + this.message);
+					console.log(`beforeUpdate阶段15`)
+				},
+				updated() {
+					console.group('updated 更新完成状态===============》');
+					console.log("%c%s", "color:red", "el     : " + this.$el);
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : " + this.$data);
+					console.log("%c%s", "color:red", "message: " + this.message);
+					console.log(`updated阶段16`)
+				},
+				beforeDestroy() {
+					console.group('beforeDestroy 销毁前状态===============》');
+					console.log("%c%s", "color:red", "el     : " + this.$el);
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : " + this.$data);
+					console.log("%c%s", "color:red", "message: " + this.message);
+					console.log(`beforeDestroy阶段17`)
+				},
+				destroyed() {
+					console.group('destroyed 销毁完成状态===============》');
+					console.log("%c%s", "color:red", "el     : " + this.$el);
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : " + this.$data);
+					console.log("%c%s", "color:red", "message: " + this.message)
+					console.log(`destroyed阶段18`)
+				},
+			})
+			let vm2 = Vue.component("demo", {
+				data() {
+					return {
+						message: 'hello world'
+					}
+				},
+				methods: {
+					add() {
+						this.message+= "1";
+					},
+					boom() {
+						this.$destroy();
+					}
+				},
+				template: `
+					<div>
+						<h1>{{message}}</h1>
+						<button v-on:click="add">点击改变数据</button>	
+						<button v-on:click="boom">点击销毁组件</button>
+					</div>
+				`,
+				beforeCreate() {
+					this.name = '万章';
+					console.group('------beforeCreate创建前状态------');
+					//%c提供css样式的格式化字符串  %s 字符串
+					console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
+					console.log("%c%s", "color:red", "data   : " + this.$data); //undefined 
+					console.log("%c%s", "color:red", "message: " + this.message)
+					console.log("beforeCreate阶段21");
+				},
+				created() {
+					console.group('------created创建完毕状态------');
+					console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
+					console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化 
+					console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+					console.log(`created阶段22`)
+				},
+				beforeMount() {
+					console.group('------beforeMount挂载前状态------');
+					console.log("%c%s", "color:red", "el     : " + (this.$el)); //已被初始化
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化  
+					console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+					console.log(`beforeMount阶段23`)
+				},
+				mounted() {
+					console.group('------mounted 挂载结束状态------');
+					console.log("%c%s", "color:red", "el     : " + this.$el); //已被初始化
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
+					console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+					console.log(`mounted阶段24`)
+				},
+				beforeUpdate() {
+					console.group('beforeUpdate 更新前状态===============》');
+					console.log("%c%s", "color:red", "el     : " + this.$el);
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : " + this.$data);
+					console.log("%c%s", "color:red", "message: " + this.message);
+					console.log(`beforeUpdate阶段25`)
+				},
+				updated() {
+					console.group('updated 更新完成状态===============》');
+					console.log("%c%s", "color:red", "el     : " + this.$el);
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : " + this.$data);
+					console.log("%c%s", "color:red", "message: " + this.message);
+					console.log(`updated阶段26`)
+				},
+				beforeDestroy() {
+					console.group('beforeDestroy 销毁前状态===============》');
+					console.log("%c%s", "color:red", "el     : " + this.$el);
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : " + this.$data);
+					console.log("%c%s", "color:red", "message: " + this.message);
+					console.log(`beforeDestroy阶段27`)
+				},
+				destroyed() {
+					console.group('destroyed 销毁完成状态===============》');
+					console.log("%c%s", "color:red", "el     : " + this.$el);
+					console.log(this.$el);
+					console.log("%c%s", "color:red", "data   : " + this.$data);
+					console.log("%c%s", "color:red", "message: " + this.message)
+					console.log(`destroyed阶段28`)
+				},
+			})
+
+			let vm3 = new Vue({
+				el: "#app",
+				methods: {
+					changeCom() {
+						this.count++;
+						this.currentCom = this.coms[this.count % 2]
+					}
+				},
+				data: {
+					coms: ['test', 'demo'],
+					currentCom: "test",
+					count: 0
+				}
+			})
+		</script>
+	</body>
+</html>

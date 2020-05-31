@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>混入</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+    </div>
+
+    <script>
+        let mixData = {
+            data() {
+                return {
+                    message: "你好,世界"
+                }
+            },
+            // methods: {
+            //     clickfn() {
+            //         console.log("hello world")
+            //     }
+            // }
+        }
+        let mixMethods = {
+            methods: {
+                clickfn() {
+                    console.log("hello world")
+                }
+            },
+            created() {
+                console.log("外部数据中的钩子函数")
+            }
+        }
+        // new Vue({
+        //     el: "#app",
+        //     data: mixData.data()
+        // })
+        let com = Vue.extend({
+            mixins: [mixData, mixMethods],
+            template: `<p v-on:click="clickfn">{{ message }}</p>`,
+            // methods: {
+            //     clickfn() {
+            //         console.log("hello world")
+            //     }
+            // },
+            created() {
+                console.log("内部数据中的钩子函数")
+            },
+            created: [function() {
+                console.log("外部数据中的钩子函数")
+            }, function() {
+                console.log("内部数据中的钩子函数")
+            }]
+        })
+        new com().$mount("#app")
+
+        // 混合时,自带的会覆盖混合过来的(数据,普通方法)
+        // 钩子函数在多个数据有定义,会把多个钩子函数中的值组合成一个数组,把数组赋予钩子函数
+        // 混入也可以进行全局注册。使用时格外小心！一旦使用全局混入，它将影响每一个之后创建的 Vue 实例。使用恰当时，这可以用来为自定义选项注入处理逻辑
+
+        // 全局混入
+        // Vue.mixin({
+        //     created() {
+        //         console.log("全局混入")
+        //     },
+        //     data() {
+        //         return {
+        //             message: "hello world"
+        //         }
+        //     }
+        // })
+        // new Vue({
+        //     el: "#app",
+        // })
+    </script>
+</body>
+</html>

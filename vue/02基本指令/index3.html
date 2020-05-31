@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="handleClick">点击按钮</button>
+        <button v-on:mouseenter="handleMouseenter">鼠标移动</button>
+        <button @click="handleClick(1,2,$event)">参数验证</button>
+        <div @click.capture="handleParent">
+            parent
+            <div @click="handleSon">
+                son
+                <div @click.stop="handleGrandSon">grandson</div>
+            </div>
+        </div>
+        <a href="" @click.prevent>点击</a>
+
+        <input type="text" @keyup.enter="handleKeyup"></input>
+        <!-- 既按s又按w(键值表) -->
+        <input type="text" @keyup.83.87="handleKeyup"></input>
+    </div>
+
+    <script>
+        /*
+        *
+        *  v-on:事件名 =>  @事件名
+        *  @click='事件处理函数'	
+        *  	事件处理函数的第一个形参就是事件对象
+        *
+        *  @click='事件处理函数(形参1,形参2...,$event)'
+        *  	事件处理函数的最后一个形参就是事件对象
+        *
+        *  事件修饰符
+        *  	@click.once 给节点绑定一个一次性事件
+        *  		   .stop 阻止时间冒泡
+    *			   .capture 让元素的事件处理函数在事件捕获阶段触发
+    *			   .self 触发事件的函数必须是自身才能触发事件处理函数
+    *			   .prevent 阻止元素的默认行为
+        *	按键修饰符
+        *		@click.enter  .tab  .delete  .esc  .space  .up  .down  .left  .right
+        *  系统修饰符
+        *  	@click.ctrl  .alt  .shift  .meta
+        *
+        **/
+        let vm = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            methods: {
+                handleClick: function(num1,num2,e) {
+                    console.log("点击",num1,num2,e)
+                },
+                handleMouseenter: function() {
+                    console.log("鼠标移动进来了")
+                },
+                handleParent: function() {
+                    console.log("parent")
+                },
+                handleSon: function() {
+                    console.log("son")
+                },
+                handleGrandSon: function() {
+                    console.log("grandson")
+                },
+                handleKeyup: function() {
+                    console.log("enter")
+                }
+            }
+        })
+    </script>
+</body>
+</html>

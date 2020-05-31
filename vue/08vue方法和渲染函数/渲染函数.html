@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue渲染函数</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                message: "你好世界"
+            }
+        })
+        let com = Vue.component("test", {
+            data() {
+                return {
+                    msg: "hello world",
+                    name: "kyb",
+                    sex: "男",
+                    toggle: false
+                }
+            },
+            render(createElement) {
+                console.log(createElement("p", this.msg))
+                // return createElement("p", this.msg)
+                return createElement(
+                    "p",
+                    {
+                        attrs: {
+                            src: "./hello.html"
+                        }, 
+                        class: {
+                            content: this.toggle,
+                            sidebar: !this.toggle
+                        },
+                        style: {
+                            color: "red"
+                        }
+                    },
+                    [
+                        this.name,
+                        createElement("span", this.sex)  
+                    ]
+                )
+            }
+        })
+        new com().$mount("#app")
+    </script>
+</body>
+</html>

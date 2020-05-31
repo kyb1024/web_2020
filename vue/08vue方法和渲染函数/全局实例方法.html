@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全局实例方法</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <span v-for="item in name">{{item}}</span>
+        <p>{{message}}</p>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#example",
+            data: {
+                message: "123",
+                name: {
+                    msg: "kkk",
+                    age: 12,
+                    sex: "男"
+                }
+            },
+            beforeCreate() {
+                this.name = '万章';
+                console.group('------beforeCreate创建前状态------');
+                // %c提供css样式的格式化字符串  %s 字符串
+                console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
+                console.log("%c%s", "color:red", "data   : " + this.$data); //undefined 
+                console.log("%c%s", "color:red", "message: " + this.message) //undefined
+                console.log("beforeCreate阶段11");
+            },
+            created() {
+                console.group('------created创建完毕状态------');
+                console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
+                console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化 
+                console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+                console.log(`created阶段12`)
+            },
+            beforeMount() {
+                console.group('------beforeMount挂载前状态------');
+                console.log("%c%s", "color:red", "el     : " + (this.$el)); //已被初始化
+                console.log(this.$el);
+                console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化  
+                console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+                console.log(`beforeMount阶段13`)
+            },
+            mounted() {
+                console.group('------mounted 挂载结束状态------');
+                console.log("%c%s", "color:red", "el     : " + this.$el); //已被初始化
+                console.log(this.$el);
+                console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
+                console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+                console.log(`mounted阶段14`)
+            },
+            beforeUpdate() {
+                console.group('beforeUpdate 更新前状态===============》');
+                console.log("%c%s", "color:red", "el     : " + this.$el);
+                console.log(this.$el);
+                console.log("%c%s", "color:red", "data   : " + this.$data);
+                console.log("%c%s", "color:red", "message: " + this.message);
+                console.log(`beforeUpdate阶段15`)
+            },
+            updated() {
+                console.group('updated 更新完成状态===============》');
+                console.log("%c%s", "color:red", "el     : " + this.$el);
+                console.log(this.$el);
+                console.log("%c%s", "color:red", "data   : " + this.$data);
+                console.log("%c%s", "color:red", "message: " + this.message);
+                console.log(`updated阶段16`)
+            },
+            beforeDestroy() {
+                console.group('beforeDestroy 销毁前状态===============》');
+                console.log("%c%s", "color:red", "el     : " + this.$el);
+                console.log(this.$el);
+                console.log("%c%s", "color:red", "data   : " + this.$data);
+                console.log("%c%s", "color:red", "message: " + this.message);
+                console.log(`beforeDestroy阶段17`)
+            },
+            destroyed() {
+                console.group('destroyed 销毁完成状态===============》');
+                console.log("%c%s", "color:red", "el     : " + this.$el);
+                console.log(this.$el);
+                console.log("%c%s", "color:red", "data   : " + this.$data);
+                console.log("%c%s", "color:red", "message: " + this.message)
+                console.log(`destroyed阶段18`)
+            }
+        })
+        // vm.message = "new message" // 更新数据
+        console.log(vm.$el.textContent)  // false
+        // 全局方法nextTick
+        // 下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM
+        Vue.nextTick(function() {
+            console.log(vm.$el.textContent,"+++++++++++++++") 
+        })
+        // 实例方法nextTick
+        // 和全局方法Vue.nextTick不同的是回调的 this 自动绑定到调用它的实例上
+        // vm.$nxtTick( [callback] )
+
+        // vm.$destroy()
+
+        // 全局方法之set
+        // Vue.set(vm.name, "name", "我能")
+        // 实例方法之set
+        // vm.$set(this.name, "name", "我能")
+
+        // 全局方法之delete
+        // Vue.delete(vm.name, "name")
+    </script>
+</body>
+</html>

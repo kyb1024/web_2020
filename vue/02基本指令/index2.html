@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue基本指令</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="(value, index) of arr">
+					{{ value }}-----{{index}}
+				</li>
+				<li>------------------------</li>
+				<li v-for="(n, index) of num">
+					{{ n }}------{{index}}
+				</li>
+				<li>------------------------</li>
+				<li v-for="(s,index) of str">
+					{{ s }}------{{index}}
+				</li>
+				<li>------------------------</li>
+				<li v-for="(value,key,index) in person">
+					{{value}}-------{{key}}-------{{index}}
+				</li>
+			</ul>
+			<ul>
+				<li v-for="(item,index) of arr" v-bind:key="item">
+					{{item}}------<input />
+				</li>
+			</ul>
+			<button @click="handleClick">点击</button>
+		</div>
+			
+		<script>
+			/* 
+			*   for-in 和 for-of 的表现完全一致
+			*   一般情况下 for-in 遍历对象, for-of 遍历数组
+			*
+			*
+			*  能够让数组在视图中更新的操作(数组的变异方法)
+			*  	push  pop  unshift  shift  reverse  splice  sort
+			*
+			*  不能让数组在视图中更新的操作
+			*  	修改数组的索引
+			*  	修改数组的length
+			*
+			*
+			*  能够让对象在视图中更新的操作
+			*  	修改对象属性
+			*
+			*  不能让对象在视图中更新的操作
+			*  	增加对象属性
+			*  	删除对象属性
+			*
+			* */
+			let vm = new Vue({
+				el: "#app",
+				data: {
+					arr: [1, 2, 3, 4],
+					num: 5,
+					str: "love",
+					person: {
+						name: "石原里美",
+						gender: "女",
+						age: 18
+					}
+				},
+				methods: {
+					handleClick: function() {
+						this.arr.sort((a, b) => {
+							return Math.random() - 0.5
+						})
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

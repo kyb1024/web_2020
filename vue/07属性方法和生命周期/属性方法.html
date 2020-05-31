@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性方法</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+
+    <script>
+        let data = { 
+            name: "kyb", 
+            sex: "帅哥", 
+            data: "你好世界",
+            gfs: {
+                gf1: "石原里美",
+                fg2: "斋藤飞鸟"
+            }
+        }
+        // vm.$amount("#app")
+        let vm = new Vue({
+            el: "#app",
+            data: data,
+            watch: {
+                name: function () {
+                    console.log("hello world")
+                    this.$emit("kuawo", "haha")
+                }
+            },
+            //  template里面没有this
+            template: `<p v-on:click="$emit("kuawo", "ha")">{{sex}}</p>`,
+            // vm.$options
+            definedbykyb: "kyb"  // 自定义属性
+        })
+
+        // vm.$watch("sex", function(newValue, oldValue) {
+        //     console.log("newValue:"+newValue, "oldValue:"+oldValue)
+        // })
+
+        // let fn = vm.$watch(function () {
+        //     return this.sex.indexof("帅")
+        //     return this.sex + this.name
+        // }, function (newValue, oldValue) {
+        //     console.log("newValue:" + newValue, "oldValue:" + oldValue)
+        // })
+        // fn 运行相当于取消观察
+
+        var unwatch = vm.$watch("gfs", function (newValue, oldValue) {
+            console.log("newValue:" + newValue, "oldValue:" + oldValue)
+            // unwatch()  // 自我取消监听
+            if(unwatch) {
+                unwatch()
+            }
+        }, {
+            deep: true,
+            immediate: true  // 页面刷新的一瞬间,执行了一次回调函数
+        })
+        // 为了发现 对象 内部值的变化，可以在选项参数中指定 deep: true 
+        // 在带有 immediate 选项时，你不能在第一次回调时取消侦听给定的 property
+
+        vm.$set(vm.gfs, "gf3", "小栗有以")
+
+        //  监听当前实例的自定义事件
+        vm.$on("kuawo", function(name) {
+            console.log(`${name}写代码比蔡徐坤好多了`)
+        })
+        // vm.$once  在第一次之后移除监听器
+        // vm.$off  移除自定义事件监听器
+        //      如果没有提供参数，则移除所有的事件监听器；
+        //      如果只提供了事件，则移除该事件所有的监听器；
+        //      如果同时提供了事件与回调，则只移除这个回调的监听器
+    </script>
+</body>
+</html>

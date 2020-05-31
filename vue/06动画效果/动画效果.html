@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画效果</title>
+    <link rel="stylesheet" href="./animate.css">
+    <script src="../vue.js"></script>
+    <style>
+        div {
+            text-align: center;
+        }
+        /* 触发式动画 */
+        /* .fade-enter-active, .fade-leave-active {
+            transition: all .5s cubic-bezier(.81, .1, .11, .88);
+        }
+        .fade-enter, .fade-leave-to {
+            opacity: 0;
+            color: red;
+            transform: translateX(50px);
+        } */
+
+        /* 主动式动画(关键帧) */ 
+        /* .fade-enter-active {
+            animation: bounce 1s;
+        }
+        .fade-leave-active {
+            animation: bounce 1s reverse;
+        } */
+        @keyframes bounce {
+            0% {
+                transform: scale(0)
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="show=!show">点击切换</button>
+        <transition name="fade" 
+                    enter-active-class="animated jackInTheBox" 
+                    leave-active-class="animated jello"
+                    mode="out-in">
+            <!-- <p v-if="show" key="one">{{msg}}</p>
+            <p v-else key="two">{{msg+"1"}}</p> -->
+            
+            <!-- <p v-bind:key="show">{{show?msg:"hello world"}}</p> -->
+
+            <component v-bind:is="currentCom"></component>
+        </transition>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                show: true,
+                msg: "你好,世界"
+            },
+            components: {
+                com1: {
+                    template: `<p>你好,世界</p>`
+                },
+                com2: {
+                    template: `<p>hello,world</p>`
+                }
+            },
+            computed: {
+                currentCom() {
+                    return this.show?"com1":"com2"
+                }
+            }
+        })
+    </script>
+</body>
+</html>
